@@ -1,3 +1,5 @@
+Forked version of `pretty_midi` to be used for music generation project and handling midi files.
+
 `pretty_midi` contains utility function/classes for handling MIDI data, so that it's in a format which is easy to modify and extract information from.
 
 Documentation is available [here](http://craffel.github.io/pretty-midi/).  You can also find a Jupyter notebook tutorial [here](http://nbviewer.jupyter.org/github/craffel/pretty-midi/blob/master/Tutorial.ipynb).
