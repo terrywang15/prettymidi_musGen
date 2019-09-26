@@ -48,11 +48,17 @@ class PrettyMIDI(object):
         List of :class:`pretty_midi.Lyric` objects.
     """
 
-    def __init__(self, midi_file=None, resolution=220, initial_tempo=120.):
-        """Initialize either by populating it with MIDI data from a file or
+    def __init__(self, midi_file=None, resolution=220, initial_tempo=120., ignore_tempo_changes=False):
+        """
+        Initialize either by populating it with MIDI data from a file or
         from scratch with no data.
 
+        :param midi_file: file path pointing to midi file to load
+        :param resolution: not sure
+        :param initial_tempo: initial tempo used, need to be float
+        :param ignore_tempo_changes: if True, ignores any tempo change
         """
+
         if midi_file is not None:
             # Load in the MIDI data using the midi module
             if isinstance(midi_file, six.string_types):
@@ -73,7 +79,10 @@ class PrettyMIDI(object):
             self.resolution = midi_data.ticks_per_beat
 
             # Populate the list of tempo changes (tick scales)
-            self._load_tempo_changes(midi_data)
+            if ignore_tempo_changes:
+                self._tick_scales = [(0, 60.0/(initial_tempo*self.resolution))]
+            else:
+                self._load_tempo_changes(midi_data)
 
             # Update the array which maps ticks to time
             max_tick = max([max([e.time for e in t])

@@ -140,5 +140,6 @@ from .instrument import *
 from .containers import *
 from .utilities import *
 from .constants import *
+from .musGen_utils import *
 
 __version__ = '0.2.8'
